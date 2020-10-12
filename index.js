@@ -12,7 +12,7 @@ var lineAvg = 0;
 var coverTotal = 0;
 var coverEntries = 0;
 var coverAvg = 0;
-
+//Update Cover Charges
 var barData =[
     {
       "id": 0,
