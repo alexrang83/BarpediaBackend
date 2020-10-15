@@ -31,8 +31,8 @@ var barData =[
       },
       "phone": "7178675309",
       "address": "111 East Beaver Street",
-      "coverCharge": 5,
-      "line": 2,
+      "coverCharge": 0,
+      "line": 0,
     },
     {
       "id": 1,
@@ -51,8 +51,8 @@ var barData =[
       },
       "phone": "8142381110",
       "address": "139 S Allen St",
-      "coverCharge": 1,
-      "line": 1,
+      "coverCharge": 0,
+      "line": 0,
     },
     {
       "id": 2,
@@ -71,7 +71,7 @@ var barData =[
       },
       "phone": "8142370374",
       "address": "112 S Garner St",
-      "coverCharge": 10,
+      "coverCharge": 0,
       "line": 0,
     },
     {
@@ -91,8 +91,8 @@ var barData =[
       },
       "phone": "8142375081",
       "address": "118 S Garner St",
-      "coverCharge": 8,
-      "line": 1,
+      "coverCharge": 0,
+      "line": 0,
     },
     {
       "id": 4,
@@ -111,8 +111,8 @@ var barData =[
       },
       "phone": "8148629367",
       "address": "130 Heister St",
-      "coverCharge": 15,
-      "line": 2,
+      "coverCharge": 0,
+      "line": 0,
     },
     {
       "id": 5,
