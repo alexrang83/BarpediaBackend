@@ -12,7 +12,7 @@ var lineAvg = 0;
 var coverTotal = 0;
 var coverEntries = 0;
 var coverAvg = 0;
-
+//Update Cover Charges
 var barData =[
     {
       "id": 0,
@@ -260,8 +260,9 @@ function newLineAvg(newEntry) {
 function newCoverAvg(newEntry) {
   coverEntries = coverEntries + 1;
   coverTotal = newEntry + coverTotal;
-  lineAvg = (coverTotal/coverEntries);
-  return lineAvg;
+  coverAvg = (coverTotal/coverEntries);
+  console.log(coverAvg)
+  return coverAvg;
 }
 
 app.get("/", function(req, res){
@@ -281,13 +282,14 @@ app.get("/linedata/:barname", function(req, res){
 app.post("/linedata/:barname", function(req,res){
     var index = req.params.barname
     console.log(req.body)
-    console.log(req.params.barname)
+    //console.log(req.params.barname)
     if(req.body.data.coverCharge != 0){
-      barData[index].coverCharge = newLineAvg(req.body.data.coverCharge)
+      barData[index].coverCharge = Math.round(newLineAvg(parseInt(req.body.data.coverCharge)))
     }
     if(req.body.data.line != -1){
-      barData[index].line = Math.round(parseInt(newCoverAvg(req.body.data.line)))
+      barData[index].line = Math.round(newCoverAvg(parseInt(req.body.data.line)))
     }
+    console.log(barData[0]);
     res.send({})
 })
 
