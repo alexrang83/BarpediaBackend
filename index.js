@@ -115,7 +115,7 @@ var barData =[
       "line": 2,
     },
     {
-      "id": 7,
+      "id": 5,
       "name": "Cafe 210",
       "description": "",
       "pic_name": "Cafe_210",
@@ -134,7 +134,7 @@ var barData =[
       "line": 0,
     },
     {
-      "id": 8,
+      "id": 6,
       "name": "Doggies",
       "description": "",
       "pic_name": "Doggies",
@@ -153,7 +153,7 @@ var barData =[
       "line": 0,
     },
     {
-      "id": 9,
+      "id": 7,
       "name": "Mad Mex",
       "description": "",
       "pic_name": "Mad_Mex",
@@ -172,7 +172,7 @@ var barData =[
       "line": 0,
     },
     {
-      "id": 10,
+      "id": 8,
       "name": "Pickles",
       "description": "",
       "pic_name": "Pickles",
@@ -191,7 +191,7 @@ var barData =[
       "line": 0,
     },
     {
-      "id": 11,
+      "id": 9,
       "name": "Shandygaff",
       "description": "",
       "pic_name": "Shandygaff",
@@ -210,7 +210,7 @@ var barData =[
       "line": 0,
     },
     {
-      "id": 5,
+      "id": 10,
       "name": "Chrome",
       "description": "",
       "pic_name": "Chrome",
@@ -230,7 +230,7 @@ var barData =[
       "line": 0,
     },
     {
-      "id": 6,
+      "id": 11,
       "name": "Basement",
       "description": "",
       "pic_name": "Basement",
@@ -273,14 +273,14 @@ app.get("/linedata", function(req, res){
     res.send(barData)
 })
 
-app.get("/linedata/:barname", function(req, res){
-    var returnData = barData.find(element => element.id == req.params.barname)
+app.get("/linedata/:id", function(req, res){
+    var returnData = barData.find(element => element.id == req.params.id)
     console.log(returnData);
     res.send(returnData)
 });
 
-app.post("/linedata/:barname", function(req,res){
-    var index = req.params.barname
+app.post("/linedata/:id", function(req,res){
+    var index = req.params.id
     console.log(req.body)
     //console.log(req.params.barname)
     if(req.body.data.coverCharge != 0){
