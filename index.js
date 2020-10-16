@@ -13,7 +13,132 @@ var coverTotal = 0;
 var coverEntries = 0;
 var coverAvg = 0;
 //Update Cover Charges
-var barData =[
+
+var barDynamicData = [
+  {
+  "id": 0,
+  "name": "Phyrst",
+  "coverTotal": 0,
+  "coverEntries": 0,
+  "coverAvg" : 0,
+  "lineTotal": 0,
+  "lineEntries": 0,
+  "lineAvg" : 0,
+  
+},
+{
+  "id": 1,
+  "name": "Champs Downtown",
+  "coverTotal": 0,
+  "coverEntries": 0,
+  "coverAvg" : 0,
+  "lineTotal": 0,
+  "lineEntries": 0,
+  "lineAvg" : 0,
+},
+{
+  "id": 2,
+  "name": "Bar Bleu",
+  "coverTotal": 0,
+  "coverEntries": 0,
+  "coverAvg" : 0,
+  "lineTotal": 0,
+  "lineEntries": 0,
+  "lineAvg" : 0,
+},
+{
+  "id": 3,
+  "name": "Lions Den",
+  "coverTotal": 0,
+  "coverEntries": 0,
+  "coverAvg" : 0,
+  "lineTotal": 0,
+  "lineEntries": 0,
+  "lineAvg" : 0,
+},
+{
+  "id": 4,
+  "name": "Primanti Brothers",
+  "coverTotal": 0,
+  "coverEntries": 0,
+  "coverAvg" : 0,
+  "lineTotal": 0,
+  "lineEntries": 0,
+  "lineAvg" : 0,
+},
+{
+  "id": 5,
+  "name": "Cafe 210",
+  "coverTotal": 0,
+  "coverEntries": 0,
+  "coverAvg" : 0,
+  "lineTotal": 0,
+  "lineEntries": 0,
+  "lineAvg" : 0,
+},
+{
+  "id": 6,
+  "name": "Doggies",
+  "coverTotal": 0,
+  "coverEntries": 0,
+  "coverAvg" : 0,
+  "lineTotal": 0,
+  "lineEntries": 0,
+  "lineAvg" : 0,
+},
+{
+  "id": 7,
+  "name": "Mad Mex",
+  "coverTotal": 0,
+  "coverEntries": 0,
+  "coverAvg" : 0,
+  "lineTotal": 0,
+  "lineEntries": 0,
+  "lineAvg" : 0,
+},
+{
+  "id": 8,
+  "name": "Pickles",
+  "coverTotal": 0,
+  "coverEntries": 0,
+  "coverAvg" : 0,
+  "lineTotal": 0,
+  "lineEntries": 0,
+  "lineAvg" : 0,
+},
+{
+  "id": 9,
+  "name": "Shandygaff",
+  "coverTotal": 0,
+  "coverEntries": 0,
+  "coverAvg" : 0,
+  "lineTotal": 0,
+  "lineEntries": 0,
+  "lineAvg" : 0,
+},
+{
+  "id": 10,
+  "name": "Chrome",
+  "coverTotal": 0,
+  "coverEntries": 0,
+  "coverAvg" : 0,
+  "lineTotal": 0,
+  "lineEntries": 0,
+  "lineAvg" : 0,
+},
+{
+  "id": 11,
+  "name": "Basement",
+  "coverTotal": 0,
+  "coverEntries": 0,
+  "coverAvg" : 0,
+  "lineTotal": 0,
+  "lineEntries": 0,
+  "lineAvg" : 0,
+}
+]
+
+var barData = [
     {
       "id": 0,
       "name": "Phyrst",
@@ -250,19 +375,28 @@ var barData =[
     }
   ]
   
-function newLineAvg(newEntry) {
-    lineEntries = lineEntries + 1;
-    lineTotal = newEntry + lineTotal;
-    lineAvg = (lineTotal/lineEntries);
+  
+function newLineAvg(newEntry, id) {
+  var barObj = barDynamicData[id];
+  barObj.lineEntries += 1;
+  barObj.lineTotal += newEntry;
+  barObj.lineAvg = barObj.lineTotal/ barObj.lineEntries;
+  lineEntries = lineEntries + 1;
+  lineTotal = newEntry + lineTotal;
+  lineAvg = (lineTotal/lineEntries);
     return lineAvg;
 }
 
-function newCoverAvg(newEntry) {
+function newCoverAvg(newEntry,id) {
+  var barObj = barDynamicData[id];
+  barObj.coverEntries += 1;
+  barObj.coverTotal += newEntry;
+  barObj.coverAvg = barObj.coverTotal/ barObj.coverEntries;
   coverEntries = coverEntries + 1;
   coverTotal = newEntry + coverTotal;
   coverAvg = (coverTotal/coverEntries);
   console.log(coverAvg)
-  return coverAvg;
+  return barObj.coverAvg;
 }
 
 app.get("/", function(req, res){
@@ -270,7 +404,7 @@ app.get("/", function(req, res){
 });
 
 app.get("/linedata", function(req, res){
-    res.send(barData)
+    res.send(barDynamicData)
 })
 
 app.get("/linedata/:id", function(req, res){
@@ -281,13 +415,14 @@ app.get("/linedata/:id", function(req, res){
 
 app.post("/linedata/:id", function(req,res){
     var index = req.params.id
-    console.log(req.body)
-    //console.log(req.params.barname)
+    var newCover = parseInt(req.body.data.coverCharge)
+    var newLine = parseInt(req.body.data.line);
+
     if(req.body.data.coverCharge != 0){
-      barData[index].coverCharge = Math.round(newCoverAvg(parseInt(req.body.data.coverCharge)))
+      barData[index].coverCharge = Math.round(newCoverAvg(newCover, index))
     }
     if(req.body.data.line != -1){
-      barData[index].line = Math.round(newLineAvg(parseInt(req.body.data.line)))
+      barData[index].line = Math.round(newLineAvg(newLine, index))
     }
     console.log(barData[0]);
     res.send({})
