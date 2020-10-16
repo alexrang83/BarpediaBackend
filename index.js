@@ -404,7 +404,7 @@ app.get("/", function(req, res){
 });
 
 app.get("/linedata", function(req, res){
-    res.send(barDynamicData)
+    res.send(barData)
 })
 
 app.get("/linedata/:id", function(req, res){
