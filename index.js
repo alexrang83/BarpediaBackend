@@ -429,7 +429,7 @@ app.post("/linedata/:id", function(req,res){
 })
 
 app.post("/reset", function(req,res){
-  if(req.params.resetKey == process.env.resetKey){
+  if(req.body.resetKey == process.env.resetKey){
     var i;
     for(i = 0; i < barDynamicData.length; i++ ){
       barDynamicData[i].coverTotal = 0;
