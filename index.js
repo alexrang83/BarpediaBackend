@@ -428,19 +428,24 @@ app.post("/linedata/:id", function(req,res){
     res.send({})
 })
 
-app.get("/reset", function(req,res){
-  var i;
-  for(i = 0; i < barDynamicData.length; i++ ){
-    barDynamicData[i].coverTotal = 0;
-    barDynamicData[i].coverEntries = 0;
-    barDynamicData[i].coverAvg = 0;
-    barDynamicData[i].lineTotal = 0;
-    barDynamicData[i].lineEntries = 0;
-    barDynamicData[i].lineAvg = 0;
-    barData[i].coverCharge = 0;
-    barData[i].line = -1;
+app.post("/reset", function(req,res){
+  if(req.params.resetKey == process.env.resetKey){
+    var i;
+    for(i = 0; i < barDynamicData.length; i++ ){
+      barDynamicData[i].coverTotal = 0;
+      barDynamicData[i].coverEntries = 0;
+      barDynamicData[i].coverAvg = 0;
+      barDynamicData[i].lineTotal = 0;
+      barDynamicData[i].lineEntries = 0;
+      barDynamicData[i].lineAvg = 0;
+      barData[i].coverCharge = 0;
+      barData[i].line = -1;
+    }
+    res.send("Reset successful");
   }
-  res.send(process.env.resetKey);
+  else{
+    res.send("Wrong password");
+  }
 })
 
 const host = '0.0.0.0';
