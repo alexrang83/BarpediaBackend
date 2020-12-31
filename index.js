@@ -18,12 +18,12 @@ var barDynamicData = [
   {
   "id": 0,
   "name": "Phyrst",
-  "coverTotal": 0,
-  "coverEntries": 0,
-  "coverAvg" : 0,
-  "lineTotal": 0,
-  "lineEntries": 0,
-  "lineAvg" : 0,
+  "coverTotal": 3,
+  "coverEntries": 3,
+  "coverAvg" : 100,
+  "lineTotal": 3,
+  "lineEntries": 2,
+  "lineAvg" : 1,
   
 },
 {
@@ -157,7 +157,7 @@ var barData = [
       "phone": "7178675309",
       "address": "111 East Beaver Street",
       "coverCharge": 0,
-      "line": 0,
+      "line": -1,
     },
     {
       "id": 1,
@@ -177,7 +177,7 @@ var barData = [
       "phone": "8142381110",
       "address": "139 S Allen St",
       "coverCharge": 0,
-      "line": 0,
+      "line": -1,
     },
     {
       "id": 2,
@@ -197,7 +197,7 @@ var barData = [
       "phone": "8142370374",
       "address": "112 S Garner St",
       "coverCharge": 0,
-      "line": 0,
+      "line": -1,
     },
     {
       "id": 3,
@@ -217,7 +217,7 @@ var barData = [
       "phone": "8142375081",
       "address": "118 S Garner St",
       "coverCharge": 0,
-      "line": 0,
+      "line": -1,
     },
     {
       "id": 4,
@@ -237,7 +237,7 @@ var barData = [
       "phone": "8148629367",
       "address": "130 Heister St",
       "coverCharge": 0,
-      "line": 0,
+      "line": -1,
     },
     {
       "id": 5,
@@ -256,7 +256,7 @@ var barData = [
       },
       "address": "111 East Beaver Street",
       "coverCharge": 0,
-      "line": 0,
+      "line": -1,
     },
     {
       "id": 6,
@@ -275,7 +275,7 @@ var barData = [
       },
       "address": "111 East Beaver Street",
       "coverCharge": 0,
-      "line": 0,
+      "line": -1,
     },
     {
       "id": 7,
@@ -294,7 +294,7 @@ var barData = [
       },
       "address": "111 East Beaver Street",
       "coverCharge": 0,
-      "line": 0,
+      "line": -1,
     },
     {
       "id": 8,
@@ -313,7 +313,7 @@ var barData = [
       },
       "address": "111 East Beaver Street",
       "coverCharge": 0,
-      "line": 0,
+      "line": -1,
     },
     {
       "id": 9,
@@ -332,7 +332,7 @@ var barData = [
       },
       "address": "111 East Beaver Street",
       "coverCharge": 0,
-      "line": 0,
+      "line": -1,
     },
     {
       "id": 10,
@@ -352,7 +352,7 @@ var barData = [
       "phone": "8142310808",
       "address": "222 W Beaver Street",
       "coverCharge": 0,
-      "line": 0,
+      "line": -1,
     },
     {
       "id": 11,
@@ -371,7 +371,7 @@ var barData = [
       },
       "address": "111 East Beaver Street",
       "coverCharge": 0,
-      "line": 0,
+      "line": -1,
     }
   ]
   
@@ -426,6 +426,21 @@ app.post("/linedata/:id", function(req,res){
     }
     console.log(barData[0]);
     res.send({})
+})
+
+app.get("/reset", function(req,res){
+  var i;
+  for(i = 0; i < barDynamicData.length; i++ ){
+    barDynamicData[i].coverTotal = 0;
+    barDynamicData[i].coverEntries = 0;
+    barDynamicData[i].coverAvg = 0;
+    barDynamicData[i].lineTotal = 0;
+    barDynamicData[i].lineEntries = 0;
+    barDynamicData[i].lineAvg = 0;
+    barData[i].coverCharge = 0;
+    barData[i].line = -1;
+  }
+  res.send(process.env.resetKey);
 })
 
 const host = '0.0.0.0';
