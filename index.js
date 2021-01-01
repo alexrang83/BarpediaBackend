@@ -444,7 +444,7 @@ app.post("/reset", function(req,res){
       barDynamicData[i].lineEntries = 0;
       barDynamicData[i].lineAvg = 0;
       barData[i].coverCharge = 0;
-      barData[i].line = -1;
+      barData[i].line = 0;
     }
     res.send("Reset successful");
   }
