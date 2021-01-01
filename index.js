@@ -5,14 +5,6 @@ var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-var lineTotal = 0;
-var lineEntries = 0;
-var lineAvg = 0;
-
-var coverTotal = 0;
-var coverEntries = 0;
-var coverAvg = 0;
-//Update Cover Charges
 
 var barDynamicData = [
   {
