@@ -381,10 +381,7 @@ function newLineAvg(newEntry, id) {
   barObj.lineEntries += 1;
   barObj.lineTotal += newEntry;
   barObj.lineAvg = barObj.lineTotal/ barObj.lineEntries;
-  lineEntries = lineEntries + 1;
-  lineTotal = newEntry + lineTotal;
-  lineAvg = (lineTotal/lineEntries);
-    return lineAvg;
+  return barObj.lineAvg;
 }
 
 function newCoverAvg(newEntry,id) {
@@ -392,10 +389,6 @@ function newCoverAvg(newEntry,id) {
   barObj.coverEntries += 1;
   barObj.coverTotal += newEntry;
   barObj.coverAvg = barObj.coverTotal/ barObj.coverEntries;
-  coverEntries = coverEntries + 1;
-  coverTotal = newEntry + coverTotal;
-  coverAvg = (coverTotal/coverEntries);
-  console.log(coverAvg)
   return barObj.coverAvg;
 }
 
@@ -422,6 +415,7 @@ app.post("/linedata/:id", function(req,res){
     var index = req.params.id
     var newCover = parseInt(req.body.data.coverCharge)
     var newLine = parseInt(req.body.data.line);
+
 
     if(req.body.data.coverCharge != 0){
       barData[index].coverCharge = Math.round(newCoverAvg(newCover, index))
