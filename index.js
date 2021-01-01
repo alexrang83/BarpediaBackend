@@ -413,7 +413,12 @@ app.get("/linedata/:id", function(req, res){
     res.send(returnData)
 });
 
+app.get("/dynamic", function(req,res){
+  res.send(barDynamicData);
+})
+
 app.post("/linedata/:id", function(req,res){
+    console.log(req.body.data.line)
     var index = req.params.id
     var newCover = parseInt(req.body.data.coverCharge)
     var newLine = parseInt(req.body.data.line);
