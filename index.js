@@ -18,12 +18,12 @@ var barDynamicData = [
   {
   "id": 0,
   "name": "Phyrst",
-  "coverTotal": 3,
-  "coverEntries": 3,
-  "coverAvg" : 100,
-  "lineTotal": 3,
-  "lineEntries": 2,
-  "lineAvg" : 1,
+  "coverTotal": 0,
+  "coverEntries": 0,
+  "coverAvg" : 0,
+  "lineTotal": 0,
+  "lineEntries": 0,
+  "lineAvg" : 0,
   
 },
 {
