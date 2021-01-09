@@ -6,7 +6,12 @@ const routes = require("./routes")
 mongoose
 	.connect("mongodb+srv://barpedia:pennstate@cluster0.9ngoo.mongodb.net/Barpedia?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true })
 	.then(() => {
-    const app = express()
+	const app = express()
+	const bodyParser = require("body-parser");
+
+	app.use(bodyParser.urlencoded({
+  		extended: true
+	}));
     app.use(express.json())
     app.use("/api", routes)
 

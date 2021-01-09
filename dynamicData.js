@@ -1,3 +1,7 @@
+const express = require("express");
+const Bar = require("./models/Bar");
+const router = express.Router();
+
 var dynamicData = [
     {
     "id": 0,
@@ -126,23 +130,33 @@ function getDynamicData(){
     return dynamicData;
 }
 
-function newLineAvg(newEntry, id) {
-    var barObj = dynamicData[id];
-    barObj.lineEntries += 1;
-    barObj.lineTotal += newEntry;
-    barObj.lineAvg = barObj.lineTotal/ barObj.lineEntries;
-    return barObj.lineAvg;
+function newLineAvg(bar, newEntry) {
+    bar.lineEntries += 1;
+    bar.lineTotal += newEntry;
+    bar.lineAvg = bar.lineTotal/ bar.lineEntries;
+    return bar.lineAvg;
   }
 
-function newCoverAvg(newEntry,id) {
-    var barObj = dynamicData[id];
-    barObj.coverEntries += 1;
-    barObj.coverTotal += newEntry;
-    barObj.coverAvg = barObj.coverTotal/ barObj.coverEntries;
-    return barObj.coverAvg;
+function newCoverAvg(bar, newEntry) {
+    bar.coverEntries += 1;
+    bar.coverTotal += newEntry;
+    bar.coverCharge = bar.coverTotal/ bar.coverEntries;
+    return bar.coverCharge;
   }
 
+function resetDynamicData() {
+    var dynamicData = getDynamicData();
+    for(i = 0; i < dynamicData; i++){
+      dynamicData[i].coverEntries = 0;
+      dynamicData[i].coverTotal = 0;
+      dynamicData[i].coverAvg = 0;
+      dynamicData[i].lineAvg = 0;
+      dynamicData[i].lineEntries = 0;
+      dynamicData[i].lineTotal = 0;
+    }
+}
   
 module.exports.getDynamicData = getDynamicData;
 module.exports.newLineAvg = newLineAvg;
 module.exports.newCoverAvg = newCoverAvg;
+module.exports.resetDynamicData = resetDynamicData;

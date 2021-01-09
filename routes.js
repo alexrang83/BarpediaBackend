@@ -32,7 +32,6 @@ router.get("/bars/:id", async (req, res) => {
 });
 
 router.post("/bars/:id", async (req, res) => {
-  console.log(req.body);
 	try {
     var index = parseInt(req.params.id)
     var newCover = parseInt(req.body.data.coverCharge)
@@ -41,12 +40,12 @@ router.post("/bars/:id", async (req, res) => {
     const bar = await Bar.findOne({ id: req.params.id })
     
     if(req.body.data.coverCharge){
-      bar.coverCharge = Math.round(barFunctions.newCoverAvg(newCover, index));
+      bar.coverCharge = Math.round(barFunctions.newCoverAvg(bar, newCover));
     }
 
     if(req.body.data.line != -1){
-      bar.line = Math.round(barFunctions.newLineAvg(newLine, index));
-    }
+      bar.line = Math.round(barFunctions.newLineAvg(bar, newLine));
+    } 
 
 		await bar.save()
     res.send(bar)
@@ -54,7 +53,18 @@ router.post("/bars/:id", async (req, res) => {
 	} catch {
 		res.status(404)
 		res.send({ error: "Bar doesn't exist!" })
-	}
+  }
+})
+
+router.post("/reset", async (req, res) =>{
+  console.log(req.body)
+  if(req.body.resetKey == "a1b2c3d4"){
+    await Bar.updateMany({}, {coverCharge: 0,  line: 0, lineEntries: 0, lineTotal: 0, coverEntries: 0, coverTotal: 0})
+    res.send("Reset successful");
+  }
+  else{
+    res.send("Wrong password");
+  }
 })
 
 

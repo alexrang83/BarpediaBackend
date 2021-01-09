@@ -18,7 +18,11 @@ const schema = mongoose.Schema({
 	phone: String,
 	address: String,
 	coverCharge: Number,
-	line: Number
+	line: Number,
+	lineEntries: Number,
+	lineTotal: Number,
+	coverEntries: Number,
+	coverTotal: Number
 }, {collection: "Bars"})
 
 module.exports = mongoose.model("Bar", schema)
