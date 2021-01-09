@@ -2,6 +2,8 @@ const express = require("express")
 const mongoose = require("mongoose") 
 const routes = require("./routes")
 
+const port = process.env.port || 3000;
+
 // Connect to MongoDB database
 mongoose
 	.connect("mongodb+srv://barpedia:pennstate@cluster0.9ngoo.mongodb.net/Barpedia?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true })
@@ -15,7 +17,7 @@ mongoose
     app.use(express.json())
     app.use("/api", routes)
 
-		app.listen(3000, () => {
+		app.listen(port, () => {
 			console.log("Server has started!")
 		})
 	})
