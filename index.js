@@ -1,6 +1,7 @@
 const express = require("express")
 const mongoose = require("mongoose") 
 const routes = require("./routes")
+const port = process.env.PORT || 3000;
 
 // Connect to MongoDB database
 mongoose
@@ -15,7 +16,7 @@ mongoose
     app.use(express.json())
     app.use("/api", routes)
 
-		app.listen(3000, () => {
+		app.listen(port, () => {
 			console.log("Server has started!")
 		})
 	})
