@@ -144,6 +144,42 @@ function newCoverAvg(bar, newEntry) {
     return bar.coverCharge;
   }
 
+function newFoodAvg(bar, newEntry) {
+  bar.foodCount += 1;
+  bar.food = bar.food * ((bar.foodCount-1)/bar.foodCount) + newEntry/bar.foodCount;
+  return bar.food; 
+}
+
+function newDrinkAvg(bar, newEntry) {
+  bar.drinkCount += 1;
+  bar.drink = bar.drink * ((bar.drinkCount-1)/bar.drinkCount) + newEntry/bar.drinkCount;
+  return bar.drink; 
+}
+
+function newServiceAvg(bar, newEntry) {
+  bar.serviceCount += 1;
+  bar.service = bar.service * ((bar.serviceCount-1)/bar.serviceCount) + newEntry/bar.serviceCount;
+  return bar.service; 
+}
+
+function newPriceAvg(bar, newEntry) {
+  bar.priceCount += 1;
+  bar.price = bar.price * ((bar.priceCount-1)/bar.priceCount) + newEntry/bar.priceCount;
+  return bar.price; 
+}
+
+function newNoiseAvg(bar, newEntry) {
+  bar.noiseCount += 1;
+  bar.noise = bar.noise * ((bar.noiseCount-1)/bar.noiseCount) + newEntry/bar.noiseCount;
+  return bar.noise; 
+}
+
+function newAtmosphereAvg(bar, newEntry) {
+  bar.atmosphereCount += 1;
+  bar.atmosphere = bar.atmosphere * ((bar.atmosphereCount-1)/bar.atmosphereCount) + newEntry/bar.atmosphereCount;
+  return bar.atmosphere; 
+}
+
 function resetDynamicData() {
     var dynamicData = getDynamicData();
     for(i = 0; i < dynamicData; i++){
@@ -159,4 +195,10 @@ function resetDynamicData() {
 module.exports.getDynamicData = getDynamicData;
 module.exports.newLineAvg = newLineAvg;
 module.exports.newCoverAvg = newCoverAvg;
+module.exports.newFoodAvg = newFoodAvg;
+module.exports.newDrinkAvg = newDrinkAvg;
+module.exports.newPriceAvg = newPriceAvg;
+module.exports.newServiceAvg = newServiceAvg;
+module.exports.newNoiseAvg = newNoiseAvg;
+module.exports.newAtmosphereAvg = newAtmosphereAvg;
 module.exports.resetDynamicData = resetDynamicData;
