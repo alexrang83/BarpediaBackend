@@ -2,6 +2,7 @@ var barFunctions = require("./dynamicData.js");
 
 const express = require("express");
 const Bar = require("./models/Bar");
+const Review = require("./models/Reviews");
 const router = express.Router();
 
 
@@ -49,6 +50,46 @@ router.post("/bars/:id", async (req, res) => {
 
 		await bar.save()
     res.send(bar)
+    
+	} catch {
+		res.status(404)
+		res.send({ error: "Bar doesn't exist!" })
+  }
+})
+
+router.get("/reviews", async (req, res) => {
+  const reviews = await Review.find();
+  res.send(reviews);
+});
+
+router.post("/reviews", async (req, res) => {
+  const reviews = new Review({
+    id: req.body.id,
+    name: req.body.name,
+
+  });
+  await reviews.save();
+  res.send(reviews);
+});
+
+router.get("/reviews/:id", async (req, res) => {
+  try {
+    const reviews = await Review.findOne({ id: req.params.id });
+    res.send(reviews);
+  } catch {
+    res.status(404);
+    res.send({ error: "Bar doesn't exist!" });
+  }
+});
+
+router.post("/reviews/:id", async (req, res) => {
+	try {
+    var index = parseInt(req.params.id)
+
+    const reviews = await Review.findOne({ id: req.params.id })
+
+		await reviews.save()
+    res.send(reviews)
     
 	} catch {
 		res.status(404)
