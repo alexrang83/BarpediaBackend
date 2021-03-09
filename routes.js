@@ -75,7 +75,7 @@ router.post("/reviews", async (req, res) => {
 router.get("/reviews/:id", async (req, res) => {
   try {
     const reviews = await Review.findOne({ id: req.params.id });
-    res.send(reviews);
+    res.send("FOUND");
   } catch {
     res.status(404);
     res.send({ error: "Bar doesn't exist!" });
