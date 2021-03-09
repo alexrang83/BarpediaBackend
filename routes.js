@@ -75,7 +75,7 @@ router.post("/reviews", async (req, res) => {
 router.get("/reviews/:id", async (req, res) => {
   try {
     const reviews = await Review.findOne({ id: req.params.id });
-    res.send("FOUND");
+    res.send(reviews);
   } catch {
     res.status(404);
     res.send({ error: "Bar doesn't exist!" });
@@ -88,31 +88,6 @@ router.post("/reviews/:id", async (req, res) => {
 
     const reviews = await Review.findOne({ id: req.params.id })
 
-    if(req.body.data.food){
-      bar.food = barFunctions.newFoodAvg(bar, food);
-    }
-
-    if(req.body.data.drink){
-      bar.drink = barFunctions.newDrinkAvg(bar, drink);
-    }
-
-    if(req.body.data.service){
-      bar.service = barFunctions.newServiceAvg(bar, service);
-    }
-
-    if(req.body.data.price){
-      bar.price = barFunctions.newPriceAvg(bar, price);
-    }
-
-    if(req.body.data.noise){
-      bar.noise = barFunctions.newNoiseAvg(bar, noise);
-    }
-
-    if(req.body.data.atmosphere){
-      bar.atmosphere = barFunctions.newAtmosphereAvg(bar, atmosphere);
-    }
-
-		await reviews.save()
     res.send(reviews)
     
 	} catch {
