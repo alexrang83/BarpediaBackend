@@ -88,6 +88,7 @@ router.post("/reviews/:id", async (req, res) => {
 
     const reviews = await Review.findOne({ id: req.params.id })
 
+		await reviews.save()
     res.send(reviews)
     
 	} catch {
