@@ -84,20 +84,46 @@ router.get("/reviews/:id", async (req, res) => {
 
 router.post("/reviews/:id", async (req, res) => {
 	try {
-//    var index = parseInt(req.params.id);
-//    var food = parseInt(req.body.data.food);
-//    var drink = parseInt(req.body.data.drink);
-//    var service = parseInt(req.body.data.service);
-//    var price = parseInt(req.body.data.price);
-//    var noise = parseInt(req.body.data.noise);
-//    var atmosphere = parseInt(req.body.data.line);
+    console.log(req.body.data);
+    var index = parseInt(req.params.id);
+    var food = parseInt(req.body.data.food);
+    var drink = parseInt(req.body.data.drink);
+    var service = parseInt(req.body.data.service);
+    var price = parseInt(req.body.data.price);
+    var noise = parseInt(req.body.data.noise);
+    var atmosphere = parseInt(req.body.data.line);
 
     const reviews = await Review.findOne({ id: req.params.id });
+
+    if(req.body.data.food){
+      bar.food = barFunctions.newFoodAvg(reviews, food);
+    }
+
+    if(req.body.data.drink){
+      bar.drink = barFunctions.newDrinkAvg(reviews, drink);
+    }
+
+    if(req.body.data.service){
+      bar.service = barFunctions.newServiceAvg(reviews, service);
+    }
+
+    if(req.body.data.price){
+      bar.price = barFunctions.newPriceAvg(reviews, price);
+    }
+
+    if(req.body.data.noise){
+      bar.noise = barFunctions.newNoiseAvg(reviews, noise);
+    }
+
+    if(req.body.data.atmosphere){
+      bar.atmosphere = barFunctions.newAtmosphereAvg(reviews, atmosphere);
+    }
 
 		await reviews.save();
     res.send(reviews);
     
 	} catch {
+		res.status(404);
 		res.send({ error: "Bar doesn't exist!" });
   }
 })
