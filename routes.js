@@ -85,8 +85,38 @@ router.get("/reviews/:id", async (req, res) => {
 router.post("/reviews/:id", async (req, res) => {
 	try {
     var index = parseInt(req.params.id)
+    var food = parseInt(req.body.data.food)
+    var drink = parseInt(req.body.data.drink);
+    var service = parseInt(req.body.data.service)
+    var price = parseInt(req.body.data.price);
+    var noise = parseInt(req.body.data.noise)
+    var atmosphere = parseInt(req.body.data.line);
 
     const reviews = await Review.findOne({ id: req.params.id })
+
+    if(req.body.data.food){
+      bar.food = barFunctions.newFoodAvg(bar, food);
+    }
+
+    if(req.body.data.drink){
+      bar.drink = barFunctions.newDrinkAvg(bar, drink);
+    }
+
+    if(req.body.data.service){
+      bar.service = barFunctions.newServiceAvg(bar, service);
+    }
+
+    if(req.body.data.price){
+      bar.price = barFunctions.newPriceAvg(bar, price);
+    }
+
+    if(req.body.data.noise){
+      bar.noise = barFunctions.newNoiseAvg(bar, noise);
+    }
+
+    if(req.body.data.atmosphere){
+      bar.atmosphere = barFunctions.newAtmosphereAvg(bar, atmosphere);
+    }
 
 		await reviews.save()
     res.send(reviews)
