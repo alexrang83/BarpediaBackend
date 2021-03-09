@@ -34,11 +34,11 @@ router.get("/bars/:id", async (req, res) => {
 
 router.post("/bars/:id", async (req, res) => {
 	try {
-    var index = parseInt(req.params.id)
-    var newCover = parseInt(req.body.data.coverCharge)
+    var index = parseInt(req.params.id);
+    var newCover = parseInt(req.body.data.coverCharge);
     var newLine = parseInt(req.body.data.line);
 
-    const bar = await Bar.findOne({ id: req.params.id })
+    const bar = await Bar.findOne({ id: req.params.id });
     
     if(req.body.data.coverCharge){
       bar.coverCharge = Math.round(barFunctions.newCoverAvg(bar, newCover));
@@ -48,12 +48,12 @@ router.post("/bars/:id", async (req, res) => {
       bar.line = Math.round(barFunctions.newLineAvg(bar, newLine));
     } 
 
-		await bar.save()
-    res.send(bar)
+		await bar.save();
+    res.send(bar);
     
 	} catch {
-		res.status(404)
-		res.send({ error: "Bar doesn't exist!" })
+		res.status(404);
+		res.send({ error: "Bar doesn't exist!" });
   }
 })
 
@@ -84,15 +84,16 @@ router.get("/reviews/:id", async (req, res) => {
 
 router.post("/reviews/:id", async (req, res) => {
 	try {
-    var index = parseInt(req.params.id)
-    var food = parseInt(req.body.data.food)
+    console.log(req.body.data);
+    var index = parseInt(req.params.id);
+    var food = parseInt(req.body.data.food);
     var drink = parseInt(req.body.data.drink);
-    var service = parseInt(req.body.data.service)
+    var service = parseInt(req.body.data.service);
     var price = parseInt(req.body.data.price);
-    var noise = parseInt(req.body.data.noise)
+    var noise = parseInt(req.body.data.noise);
     var atmosphere = parseInt(req.body.data.line);
 
-    const reviews = await Review.findOne({ id: req.params.id })
+    const reviews = await Review.findOne({ id: req.params.id });
 
     if(req.body.data.food){
       bar.food = barFunctions.newFoodAvg(reviews, food);
@@ -118,12 +119,12 @@ router.post("/reviews/:id", async (req, res) => {
       bar.atmosphere = barFunctions.newAtmosphereAvg(reviews, atmosphere);
     }
 
-		await reviews.save()
-    res.send(reviews)
+		await reviews.save();
+    res.send(reviews);
     
 	} catch {
-		res.status(404)
-		res.send({ error: "Bar doesn't exist!" })
+		res.status(404);
+		res.send({ error: "Bar doesn't exist!" });
   }
 })
 
