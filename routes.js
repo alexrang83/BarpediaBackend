@@ -94,10 +94,6 @@ router.post("/reviews/:id", async (req, res) => {
 
     const reviews = await Review.findOne({ id: req.params.id });
 
-    if(req.body.data.food != 0){
-      bar.food = 2;
-    }
-
 		await reviews.save();
     res.send(reviews);
     
