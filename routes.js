@@ -95,27 +95,27 @@ router.post("/reviews/:id", async (req, res) => {
     const reviews = await Review.findOne({ id: req.params.id })
 
     if(req.body.data.food){
-      bar.food = barFunctions.newFoodAvg(bar, food);
+      bar.food = barFunctions.newFoodAvg(reviews, food);
     }
 
     if(req.body.data.drink){
-      bar.drink = barFunctions.newDrinkAvg(bar, drink);
+      bar.drink = barFunctions.newDrinkAvg(reviews, drink);
     }
 
     if(req.body.data.service){
-      bar.service = barFunctions.newServiceAvg(bar, service);
+      bar.service = barFunctions.newServiceAvg(reviews, service);
     }
 
     if(req.body.data.price){
-      bar.price = barFunctions.newPriceAvg(bar, price);
+      bar.price = barFunctions.newPriceAvg(reviews, price);
     }
 
     if(req.body.data.noise){
-      bar.noise = barFunctions.newNoiseAvg(bar, noise);
+      bar.noise = barFunctions.newNoiseAvg(reviews, noise);
     }
 
     if(req.body.data.atmosphere){
-      bar.atmosphere = barFunctions.newAtmosphereAvg(bar, atmosphere);
+      bar.atmosphere = barFunctions.newAtmosphereAvg(reviews, atmosphere);
     }
 
 		await reviews.save()
