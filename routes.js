@@ -102,7 +102,6 @@ router.post("/reviews/:id", async (req, res) => {
     res.send(reviews);
     
 	} catch {
-		res.status(404);
 		res.send({ error: "Bar doesn't exist!" });
   }
 })
