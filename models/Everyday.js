@@ -13,4 +13,4 @@ const schema = mongoose.Schema({
     ]
 }, { collection: "Everyday" })
 
-module.exports = mongoose.model("Review", schema)
+module.exports = mongoose.model("Everyday", schema)
