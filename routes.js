@@ -5,6 +5,7 @@ const Bar = require("./models/Bar");
 const Review = require("./models/Reviews");
 const Everyday = require("./models/Everyday");
 const Entertainment = require("./models/Entertainment");
+const Happyhour = require("./models/Happyhour");
 const router = express.Router();
 
 
@@ -136,6 +137,11 @@ router.get("/everyday", async (req, res) => {
 router.get("/entertainment", async (req, res) => {
   const entertainment = await Entertainment.find();
   res.send(entertainment);
+});
+
+router.get("/happyhour", async (req, res) => {
+  const happyhour = await Happyhour.find();
+  res.send(happyhour);
 });
 
 router.post("/reset", async (req, res) => {
