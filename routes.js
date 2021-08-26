@@ -4,6 +4,7 @@ const express = require("express");
 const Bar = require("./models/Bar");
 const Review = require("./models/Reviews");
 const Everyday = require("./models/Everyday");
+const Entertainment = require("./models/Entertainment");
 const router = express.Router();
 
 
@@ -130,6 +131,11 @@ router.post("/reviews/:id", async (req, res) => {
 router.get("/everyday", async (req, res) => {
   const everyday = await Everyday.find();
   res.send(everyday);
+});
+
+router.get("/entertainment", async (req, res) => {
+  const entertainment = await Entertainment.find();
+  res.send(entertainment);
 });
 
 router.post("/reset", async (req, res) => {
