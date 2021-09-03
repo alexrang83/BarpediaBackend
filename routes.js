@@ -7,6 +7,7 @@ const Everyday = require("./models/Everyday");
 const Entertainment = require("./models/Entertainment");
 const Happyhour = require("./models/Happyhour");
 const Specials = require("./models/Specials");
+const Messages = require("./models/Messages.js");
 const router = express.Router();
 
 
@@ -148,6 +149,11 @@ router.get("/happyhour", async (req, res) => {
 router.get("/specials", async (req, res) => {
   const specials = await Specials.find();
   res.send(specials);
+});
+
+router.get("/messages", async (req, res) => {
+  const messages = await Messages.find();
+  res.send(messages);
 });
 
 router.post("/reset", async (req, res) => {
